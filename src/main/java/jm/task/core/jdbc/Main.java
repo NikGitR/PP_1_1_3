@@ -8,18 +8,13 @@ public class Main {
 
     public static void main(String[] args) {
         userService.createUsersTable();
-
         userService.saveUser("Гротов", "Дмитрий", (byte) 36);
         userService.saveUser("Евгений", "Грономов", (byte) 88);
         userService.saveUser("Александр", "Протонов", (byte) 59);
         userService.saveUser("Егоро", "Денис", (byte) 43);
-
         userService.removeUserById(8);
-
         userService.getAllUsers();
-
         userService.cleanUsersTable();
-
         userService.dropUsersTable();
     }
 }

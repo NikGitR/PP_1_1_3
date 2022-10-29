@@ -19,28 +19,29 @@ public class Util {
     private static final String PASSWORD = "root";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 
-    public static SessionFactory getSessionFactory () {
+    public static SessionFactory getSessionFactory() {
         StandardServiceRegistryBuilder standardServiceRegistryBuilder = new StandardServiceRegistryBuilder();
-        Map<String,String> settings = new HashMap<>();
+        Map<String, String> settings = new HashMap<>();
         settings.put(Environment.URL, "jdbc:MySQL://localhost:3306/test");
         settings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
         settings.put(Environment.USER, "root");
         settings.put(Environment.PASS, "root");
         standardServiceRegistryBuilder.applySettings(settings);
-        StandardServiceRegistry  standardServiceRegistry = standardServiceRegistryBuilder.build();
+        StandardServiceRegistry standardServiceRegistry = standardServiceRegistryBuilder.build();
         MetadataSources metadataSources = new MetadataSources(standardServiceRegistry).addAnnotatedClass(User.class);
         SessionFactory sessionFactory = metadataSources.buildMetadata().buildSessionFactory();
         return sessionFactory;
     }
-    public static Connection getConnection (){
+
+    public static Connection getConnection() {
         Connection connection = null;
         try {
             Class.forName(DRIVER);
-            connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
+            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
         return connection;
     }
-        // реализуйте настройку соеденения с БД
+    // реализуйте настройку соеденения с БД
 }
